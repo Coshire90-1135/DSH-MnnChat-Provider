@@ -70,7 +70,7 @@ ModelScope/MNN/Qwen3.5-0.8B-MNN    （又换回来）
 这不直接导致「连不上」，但会让**排查时的对照实验互相矛盾**（一会儿能出字、一会儿不能），
 接手人排查前**先确认模型 id**（`/dsh-mnn-chat/probe` 或面板的「立即刷新」）。
 
-**2026-10-02 起不再需要手工同步**：插件每 `catalogRefreshMs`（默认 30 秒）自动拉一次
+插件每 `catalogRefreshMs`（默认 30 秒）自动拉一次
 `/v1/models`，列表变化就持久化到 `$DSH_HOME/mnn-chat.panel.json` 的 `lastKnownModels`，
 模型选择器会自动出现新 id（排最前），旧的标成「最近提供过」。
 
