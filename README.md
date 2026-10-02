@@ -56,7 +56,7 @@ node tools\probe.mjs http://192.168.1.23:8080 --key 你的API密钥
         displayName: MNN Chat（手机端）      # 选择器里的分组名，纯展示
         # apiKeyEnv: MNN_CHAT_API_KEY      # 密钥写进 .credentials.yaml 的 refs:，别写明文
         models:
-          - Qwen3-4B                        # 离线兜底名单；手机此刻在提供的会自动出现
+          - Qwen3-0.6B                        # 离线兜底名单；手机此刻在提供的会自动出现
         contextWindow: 32768                # 别报大
         maxTokens: 8192
 ```
@@ -127,7 +127,7 @@ node tools\probe.mjs http://192.168.1.23:8080 --key 你的API密钥
 ## 致谢与免责
 
 - [alibaba/MNN](https://github.com/alibaba/MNN) —— MNN Chat 与端侧推理引擎；
-- [DeepSeek Harness（DSH）](https://github.com/deepseek-ai) —— 「大龙虾」本体与插件体系；
+- [DeepSeek Harness（DSH）](https://github.com/deepseek-ai) —— 「DeepSeek Harness」本体与插件体系；
 - 本项目与上述项目官方无关，纯属个人折腾。再次强调：**娱乐产物**，做不了工具调用的活，
   暂不支持文生图模型，生产环境请绕道。
 
