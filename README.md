@@ -1,10 +1,10 @@
-# DSH-MnnChat-Provider 🦞📱
+# DSH-MnnChat-Provider 📱
 
 > 把 **MNN Chat**（[alibaba/MNN](https://github.com/alibaba/MNN) 的端侧 App）跑在你手机上的
 > 那个小模型，偷偷塞进 **DeepSeek Harness（DSH）** 的模型选择器里，和 DeepSeek 官方模型
 > 平起平坐。
 >
-> 这是一个**娱乐产物**。它的存在意义是「手机上白嫖的 0.6B 也能在大龙虾里排队领号」，
+> 这是一个**娱乐产物**。它的存在意义是「手机上白嫖的 0.6B 也能和大肥鱼平起平坐」，
 > 而不是替你干活。请带着这份认知继续往下读。
 
 ```
@@ -74,7 +74,7 @@ dsh plugin --profile <你的profile名> add github:Coshire90-1135/DSH-MnnChat-Pr
         displayName: MNN Chat（手机端）      # 选择器里的分组名，纯展示
         # apiKeyEnv: MNN_CHAT_API_KEY      # 密钥写进 .credentials.yaml 的 refs:，别写明文
         models:
-          - Qwen3-4B                        # 离线兜底名单；手机此刻在提供的会自动出现
+          - Qwen3-0.6B-MNN                        # 离线兜底名单；手机此刻在提供的会自动出现
         contextWindow: 32768                # 别报大
         maxTokens: 8192
 ```
