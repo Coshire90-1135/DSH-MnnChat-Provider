@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "MNN Chat（手机端）",
+    "description": "把手机 MNN Chat 的 OpenAI 兼容服务接成 DSH 的一个 provider，并带一个悬浮面板：改系统提示词、测连通性、调模型显示名。"
+  }
+}

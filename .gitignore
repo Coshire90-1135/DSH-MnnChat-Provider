@@ -1,0 +1,5 @@
+node_modules/
+.asar-dump/
+*.log
+.DS_Store
+Thumbs.db

@@ -1,0 +1,52 @@
+{
+  "name": "dsh-mnn-chat",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MNN Chat 自定义 API 服务接入 DSH：把手机端 MNN Chat（MnnLlmChat）的 OpenAI 兼容 HTTP 服务注册成 DSH 的一个 LLM provider，可在大龙虾里直接对话",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "mnn",
+    "mnn-chat",
+    "llm-provider",
+    "openai-compatible"
+  ],
+  "type": "module",
+  "main": "lib/index.js",
+  "icon": "./icon.svg",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./locale/*.json": "./locale/*.json"
+  },
+  "files": [
+    "lib",
+    "client.js",
+    "icon.svg",
+    "locale/*.json",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test test/adapter.test.mjs test/probe.test.mjs test/client.test.mjs",
+    "probe": "node tools/probe.mjs",
+    "live-check": "node tools/live-check.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": []
+    }
+  },
+  "license": "MIT"
+}

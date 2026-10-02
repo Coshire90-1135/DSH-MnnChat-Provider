@@ -1,0 +1,60 @@
+# dsh-mnn-chat：只新增自己的插件行，不替换任何官方 DSH 组件。
+#
+# 这份 patch 做的事：把手机上 MNN Chat 的 OpenAI 兼容 HTTP 服务注册成
+# DSH 的一个 LLM provider（路由名 provider: mnn-chat）。
+#
+# 上手三步：
+#   1. 手机 MNN Chat App 里加载模型、打开「API 服务」，记下显示的地址
+#      （形如 http://192.168.1.23:8080）和 API 密钥；
+#   2. 把下面的 baseURL 改成那个地址；
+#   3. 密钥写进 $DSH_HOME/.credentials.yaml 的 refs: 段
+#      （MNN_CHAT_API_KEY: <App 里显示的密钥>，热生效），
+#      并把 config 里的 apiKeyEnv 注释放开。
+#
+# 改完保存即可；改这份 YAML 会重建插件实例，不影响其它插件。
+# 全部配置项（超时、重试、提示词、显示名……）见 README「三、当前配置」的配置表。
+#
+# 面板（DSH 界面里的 ● MNN 按钮）改的东西存在 $DSH_HOME/mnn-chat.panel.json，
+# 优先级高于这里的值；删掉那个文件就回落到本 YAML。
+- insert:
+    - id: mnn-chat
+      name: dsh-mnn-chat
+      config:
+        # —— 连接 ————————————————————————————————————————————
+        # 手机端地址。App 开启「API 服务」后显示的形如 http://192.168.1.23:8080；
+        # 填到 /v1 结尾或带不带尾斜杠都识别。手机和电脑要在同一局域网。
+        # 本机调试做了 adb forward 时才用 127.0.0.1。
+        baseURL: http://127.0.0.1:8080
+        # API 密钥的「凭据名」：插件从 DSH 凭据库（.credentials.yaml 的 refs:）
+        # 或同名环境变量里取密钥，本文件里**不写明文**。
+        # MNN Chat 的 API 服务默认开着鉴权（App 里可关），密钥不配会报 MISSING_CREDENTIAL。
+        # apiKeyEnv: MNN_CHAT_API_KEY
+        # 明文密钥，仅临时调试用（会留在这个文件里）；日常请用上面的 apiKeyEnv。
+        # apiKey: 仅调试用
+
+        # —— 展示 ————————————————————————————————————————————
+        # 模型选择器里这个 provider 的分组名，纯展示，随便改。
+        displayName: MNN Chat（手机端）
+        # 选择器里模型名的显示样式：
+        #   prefixed（默认）= mnn-chat/Qwen3-0.6B-MNN（前缀是路由名 provider 的值）
+        #   tail            = Qwen3-0.6B-MNN
+        #   full            = ModelScope/MNN/Qwen3-0.6B-MNN
+        # 只影响显示；发给服务端的 model 字段永远是完整 id。悬浮面板上也能切。
+        # modelLabel: prefixed
+
+        # —— 模型 ————————————————————————————————————————————
+        # 离线兜底名单（至少写一个）。注意两点：
+        #   1. 这只是「手机连不上时也显示」的名字——手机此刻在提供的模型会由插件
+        #      自动拉取（后台每 catalogRefreshMs 毫秒探一次 /v1/models，默认 30 秒，
+        #      0 关闭），新模型自动出现在选择器最前面，不需要改这里；
+        #   2. MNN Chat 一次只加载一个模型，而且服务端**忽略**请求里的 model 字段、
+        #      永远用 App 当前加载的模型回答——所以这里写多个也只是展示，不代表能切换。
+        models:
+          - Qwen3-4B
+
+        # —— 参数 ————————————————————————————————————————————
+        # 上报给 DSH 的上下文窗口。端侧模型通常 4K–32K：报大了 DSH 会压得晚，
+        # 请求会被手机端截断。按 App 里模型的实际窗口填。
+        contextWindow: 32768
+        # 单次回复上限。手机端建议 1024–4096。
+        maxTokens: 8192

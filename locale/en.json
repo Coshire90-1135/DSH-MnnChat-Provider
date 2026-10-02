@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "MNN Chat (phone)",
+    "description": "Registers the OpenAI-compatible service of the MNN Chat app as a DSH provider, with a floating panel for the system prompt, a connectivity test, and the model display name."
+  }
+}
