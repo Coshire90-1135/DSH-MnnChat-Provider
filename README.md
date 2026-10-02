@@ -1,10 +1,10 @@
-# DSH-MnnChat-Provider 
+# DSH-MnnChat-Provider 🦞📱
 
 > 把 **MNN Chat**（[alibaba/MNN](https://github.com/alibaba/MNN) 的端侧 App）跑在你手机上的
 > 那个小模型，偷偷塞进 **DeepSeek Harness（DSH）** 的模型选择器里，和 DeepSeek 官方模型
 > 平起平坐。
 >
-> 这是一个**娱乐产物**。它的存在意义是「手机上白嫖的 0.6B 也能和大肥鱼平起平坐」，
+> 这是一个**娱乐产物**。它的存在意义是「手机上白嫖的 0.6B 也能在大龙虾里排队领号」，
 > 而不是替你干活。请带着这份认知继续往下读。
 
 ```
@@ -46,6 +46,24 @@ node tools\probe.mjs http://192.168.1.23:8080 --key 你的API密钥
 
 ## 装进 DSH
 
+**最省事的方式——不用 clone 仓库，一行命令：**
+
+```powershell
+dsh plugin --profile <你的profile名> add github:Coshire90-1135/DSH-MnnChat-Provider
+```
+
+本插件是纯 JS，仓库里就是成品、没有构建步骤，装完即用（DSH Desktop 里也可以在
+**设置 → 插件 → 添加** 里直接粘贴上面这行 `github:` 地址）。想锁定版本不被后续推送改动：
+
+```powershell
+dsh plugin --profile <你的profile名> add github:Coshire90-1135/DSH-MnnChat-Provider#01dd9f7
+```
+
+或者到 [Releases](https://github.com/Coshire90-1135/DSH-MnnChat-Provider/releases) 下载打包好的
+`.tgz`，执行 `dsh plugin --profile <名> add ./dsh-mnn-chat-0.1.0.tgz`。
+
+**或者 clone 后手动配置：**
+
 ```yaml
 # $DSH_HOME/profiles/<profile>/cordis.patch.yml
 - insert:
@@ -56,7 +74,7 @@ node tools\probe.mjs http://192.168.1.23:8080 --key 你的API密钥
         displayName: MNN Chat（手机端）      # 选择器里的分组名，纯展示
         # apiKeyEnv: MNN_CHAT_API_KEY      # 密钥写进 .credentials.yaml 的 refs:，别写明文
         models:
-          - Qwen3-0.6B                        # 离线兜底名单；手机此刻在提供的会自动出现
+          - Qwen3-4B                        # 离线兜底名单；手机此刻在提供的会自动出现
         contextWindow: 32768                # 别报大
         maxTokens: 8192
 ```
@@ -66,7 +84,8 @@ node tools\probe.mjs http://192.168.1.23:8080 --key 你的API密钥
 
 ## 悬浮面板：比你想的多
 
-入口：对话页输入框左边的 **`● MNN`** 小按钮（带状态点）。
+两个入口（效果一样）：对话页输入框左边的 **`● MNN`** 小按钮（带状态点），
+或 **设置 → 模型** 页底部的「MNN Chat（手机端）」。关掉方式：点面板外面 / Esc / 再点开关。
 
 | 区块 | 能干什么 |
 |---|---|
@@ -126,7 +145,7 @@ node tools\probe.mjs http://192.168.1.23:8080 --key 你的API密钥
 ## 致谢与免责
 
 - [alibaba/MNN](https://github.com/alibaba/MNN) —— MNN Chat 与端侧推理引擎；
-- [DeepSeek Harness（DSH）](https://github.com/deepseek-ai) —— 「DeepSeek Harness」本体与插件体系；
+- [DeepSeek Harness（DSH）](https://github.com/deepseek-ai) —— 「大龙虾」本体与插件体系；
 - 本项目与上述项目官方无关，纯属个人折腾。再次强调：**娱乐产物**，做不了工具调用的活，
   暂不支持文生图模型，生产环境请绕道。
 
