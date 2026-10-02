@@ -1,10 +1,10 @@
-# DSH-MnnChat-Provider 🦞📱
+# DSH-MnnChat-Provider 
 
 > 把 **MNN Chat**（[alibaba/MNN](https://github.com/alibaba/MNN) 的端侧 App）跑在你手机上的
 > 那个小模型，偷偷塞进 **DeepSeek Harness（DSH）** 的模型选择器里，和 DeepSeek 官方模型
 > 平起平坐。
 >
-> 这是一个**娱乐产物**。它的存在意义是「手机上白嫖的 0.6B 也能在大龙虾里排队领号」，
+> 这是一个**娱乐产物**。它的存在意义是「手机上白嫖的 0.6B 也能和大肥鱼平起平坐」，
 > 而不是替你干活。请带着这份认知继续往下读。
 
 ```
