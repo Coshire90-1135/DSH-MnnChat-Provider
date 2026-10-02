@@ -1,7 +1,6 @@
 {
   "name": "dsh-mnn-chat",
   "version": "0.1.0",
-  "private": true,
   "description": "MNN Chat 自定义 API 服务接入 DSH：把手机端 MNN Chat（MnnLlmChat）的 OpenAI 兼容 HTTP 服务注册成 DSH 的一个 LLM provider，可在大龙虾里直接对话",
   "keywords": [
     "dsh",
@@ -48,5 +47,14 @@
       "inject": []
     }
   },
-  "license": "MIT"
+  "license": "MIT",
+  "author": "Coshire90-1135",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Coshire90-1135/DSH-MnnChat-Provider.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Coshire90-1135/DSH-MnnChat-Provider/issues"
+  },
+  "homepage": "https://github.com/Coshire90-1135/DSH-MnnChat-Provider#readme"
 }
